@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Iris Flower Prediction</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Iris Flower Prediction</h1>
+
+        <p class="subtitle">
+            Enter the flower measurements to predict its species.
+        </p>
+
+        <form action="/predict" method="POST">
+
+            <label>Sepal Length (cm)</label>
+            <input
+                type="number"
+                name="sepal_length"
+                step="0.1"
+                placeholder="Example: 5.1"
+                required
+            >
+
+            <label>Sepal Width (cm)</label>
+            <input
+                type="number"
+                name="sepal_width"
+                step="0.1"
+                placeholder="Example: 3.5"
+                required
+            >
+
+            <label>Petal Length (cm)</label>
+            <input
+                type="number"
+                name="petal_length"
+                step="0.1"
+                placeholder="Example: 1.4"
+                required
+            >
+
+            <label>Petal Width (cm)</label>
+            <input
+                type="number"
+                name="petal_width"
+                step="0.1"
+                placeholder="Example: 0.2"
+                required
+            >
+
+            <button type="submit">
+                Predict Species
+            </button>
+
+        </form>
+
+        {% if prediction %}
+
+        <div class="result">
+            <h2>Prediction</h2>
+            <p>The predicted species is:</p>
+            <strong>{{ prediction }}</strong>
+        </div>
+
+        {% endif %}
+
+        {% if error %}
+
+        <div class="error">
+            <p>Error: {{ error }}</p>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
